@@ -14,7 +14,7 @@ pub struct DockerContainer {
     pub created: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub enum ContainerState {
     Running, Paused, Stopped, Restarting, Removing, Dead, Unknown,
 }

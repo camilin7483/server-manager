@@ -55,6 +55,10 @@ impl NetworkDiscovery {
                 .parse()
                 .map_err(|_| format!("CIDR inválido: {}", parts[1]))?;
 
+            if cidr > 32 {
+                return Err(format!("CIDR fuera de rango: {}", cidr));
+            }
+
             let ip: std::net::Ipv4Addr = base_ip
                 .parse()
                 .map_err(|_| format!("IP inválida: {}", base_ip))?;
@@ -77,7 +81,7 @@ impl NetworkDiscovery {
             }
             Ok(hosts)
         } else {
-            Ok(vec![subnet.to_string()])
+            Err(format!("Formato CIDR inválido (falta /): {}", subnet))
         }
     }
 }

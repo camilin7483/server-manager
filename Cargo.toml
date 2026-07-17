@@ -1,6 +1,6 @@
 [package]
 name = "server-manager"
-version = "0.1.0"
+version = "0.6.0"
 edition = "2021"
 
 [workspace]
@@ -23,11 +23,11 @@ members = [
 ]
 
 [workspace.package]
-version = "0.1.0"
+version = "0.6.0"
 edition = "2021"
 license = "MIT"
-repository = "https://github.com/cam/server-manager"
-authors = ["cam"]
+repository = "https://github.com/camilin7483/server-manager"
+authors = ["DevCam"]
 
 [workspace.dependencies]
 # Async runtime
@@ -102,5 +102,9 @@ sm-security = { path = "crates/security" }
 sm-docker = { path = "crates/docker" }
 sm-minecraft = { path = "crates/minecraft" }
 sm-reports = { path = "crates/reports" }
+sm-plugins = { path = "crates/plugins" }
 chrono = { workspace = true }
 tempfile = "3"
+futures = { workspace = true }
+serde_json = { workspace = true }
+toml = { workspace = true }

@@ -5,6 +5,7 @@ use tracing::warn;
 
 pub struct CredentialVault {
     engine: CryptoEngine,
+    salt: Vec<u8>,
     store: HashMap<String, EncryptedValue>,
 }
 
@@ -14,6 +15,7 @@ impl CredentialVault {
         let engine = CryptoEngine::from_password(master_password, &salt);
         Self {
             engine,
+            salt,
             store: HashMap::new(),
         }
     }
@@ -57,24 +59,29 @@ impl CredentialVault {
         let json = serde_json::to_string(&self.store)
             .map_err(|e| format!("export: {}", e))?;
         let (encrypted, nonce) = self.engine.encrypt(json.as_bytes())?;
-        let mut result = nonce;
+        let mut result = self.salt.clone();
+        result.extend_from_slice(&nonce);
         result.extend_from_slice(&encrypted);
         Ok(result)
     }
 
-    pub fn import(&mut self, data: &[u8]) -> Result<(), String> {
-        if data.len() < 12 {
+    pub fn import(&mut self, master_password: &str, data: &[u8]) -> Result<(), String> {
+        if data.len() < 44 {
             return Err("datos de importación corruptos".into());
         }
-        let nonce = &data[..12];
-        let ciphertext = &data[12..];
-        let json_bytes = self.engine.decrypt(ciphertext, nonce)?;
+        let imported_salt = &data[..32];
+        let nonce = &data[32..44];
+        let ciphertext = &data[44..];
+        let import_engine = CryptoEngine::from_password(master_password, imported_salt);
+        let json_bytes = import_engine.decrypt(ciphertext, nonce)?;
         let json = String::from_utf8(json_bytes)
             .map_err(|e| format!("utf8: {}", e))?;
         let imported: HashMap<String, EncryptedValue> =
             serde_json::from_str(&json)
                 .map_err(|e| format!("import: {}", e))?;
-        self.store.extend(imported);
+        self.engine = import_engine;
+        self.salt = imported_salt.to_vec();
+        self.store = imported;
         Ok(())
     }
 

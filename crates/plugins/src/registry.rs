@@ -1,4 +1,4 @@
-use sm_core::PluginManifest;
+use sm_core::types::PluginManifest;
 
 pub struct PluginRegistry {
     plugins: Vec<PluginManifest>,

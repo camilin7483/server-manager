@@ -4555,11 +4555,13 @@ dependencies = [
 
 [[package]]
 name = "server-manager"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "chrono",
  "eframe",
  "egui",
+ "futures",
+ "serde_json",
  "sm-automation",
  "sm-config",
  "sm-core",
@@ -4567,11 +4569,13 @@ dependencies = [
  "sm-minecraft",
  "sm-monitor",
  "sm-net",
+ "sm-plugins",
  "sm-reports",
  "sm-security",
  "sm-storage",
  "sm-ui",
  "tempfile",
+ "toml",
  "tracing-subscriber",
 ]
 
@@ -4677,7 +4681,7 @@ dependencies = [
 
 [[package]]
 name = "sm-automation"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "async-trait",
  "chrono",
@@ -4692,7 +4696,7 @@ dependencies = [
 
 [[package]]
 name = "sm-config"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "chrono",
  "directories",
@@ -4706,7 +4710,7 @@ dependencies = [
 
 [[package]]
 name = "sm-core"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "async-trait",
  "chrono",
@@ -4721,7 +4725,7 @@ dependencies = [
 
 [[package]]
 name = "sm-db"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "async-trait",
  "chrono",
@@ -4739,7 +4743,7 @@ dependencies = [
 
 [[package]]
 name = "sm-docker"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "chrono",
  "serde",
@@ -4752,7 +4756,7 @@ dependencies = [
 
 [[package]]
 name = "sm-minecraft"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "base64",
  "chrono",
@@ -4768,7 +4772,7 @@ dependencies = [
 
 [[package]]
 name = "sm-monitor"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "async-trait",
  "chrono",
@@ -4782,7 +4786,7 @@ dependencies = [
 
 [[package]]
 name = "sm-net"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "async-trait",
  "base64",
@@ -4803,7 +4807,7 @@ dependencies = [
 
 [[package]]
 name = "sm-plugins"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "async-trait",
  "parking_lot",
@@ -4816,7 +4820,7 @@ dependencies = [
 
 [[package]]
 name = "sm-reports"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "chrono",
  "handlebars",
@@ -4827,7 +4831,7 @@ dependencies = [
 
 [[package]]
 name = "sm-security"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "aes-gcm",
  "argon2",
@@ -4848,7 +4852,7 @@ dependencies = [
 
 [[package]]
 name = "sm-storage"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "async-trait",
  "chrono",
@@ -4861,7 +4865,7 @@ dependencies = [
 
 [[package]]
 name = "sm-ui"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "chrono",
  "eframe",
@@ -4888,7 +4892,7 @@ dependencies = [
 
 [[package]]
 name = "sm-updater"
-version = "0.1.0"
+version = "0.6.0"
 dependencies = [
  "chrono",
  "directories",
