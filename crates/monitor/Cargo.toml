@@ -1,0 +1,16 @@
+[package]
+name = "sm-monitor"
+version = "0.1.0"
+edition = { workspace = true }
+license = { workspace = true }
+description = "Server Manager — system monitoring: CPU, RAM, disk, network, GPU"
+
+[dependencies]
+sm-core = { path = "../core" }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+tracing = { workspace = true }
+sysinfo = "0.31"

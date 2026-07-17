@@ -1,0 +1,19 @@
+[package]
+name = "sm-updater"
+version = "0.1.0"
+edition = { workspace = true }
+license = { workspace = true }
+description = "Server Manager — self-updater with rollback"
+
+[dependencies]
+sm-core = { path = "../core" }
+sm-config = { path = "../config" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+chrono = { workspace = true }
+directories = { workspace = true }
+flate2 = "1"
+tar = "0.4"
+reqwest = { version = "0.12", features = ["json"] }

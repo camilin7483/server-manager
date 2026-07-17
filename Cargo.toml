@@ -1,0 +1,106 @@
+[package]
+name = "server-manager"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+resolver = "2"
+members = [
+    "crates/core",
+    "crates/config",
+    "crates/db",
+    "crates/net",
+    "crates/security",
+    "crates/plugins",
+    "crates/monitor",
+    "crates/storage",
+    "crates/automation",
+    "crates/ui",
+    "crates/updater",
+    "crates/docker",
+    "crates/minecraft",
+    "crates/reports",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/cam/server-manager"
+authors = ["cam"]
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+
+# Database
+rusqlite = { version = "0.31", features = ["bundled", "vtab"] }
+
+# SSH
+russh = "0.44"
+russh-keys = "0.44"
+
+# Security
+ring = "0.17"
+zeroize = { version = "1", features = ["derive", "zeroize_derive"] }
+argon2 = "0.5"
+aes-gcm = "0.10"
+sha2 = "0.10"
+hkdf = "0.12"
+
+# Utilities
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "2"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+once_cell = "1"
+parking_lot = "0.12"
+regex = "1"
+
+# Config paths + secure storage
+directories = "5"
+keyring = "3"
+
+# Async utilities
+async-trait = "0.1"
+futures = "0.3"
+bytes = "1"
+
+# UI
+egui = "0.30"
+eframe = "0.30"
+
+# HTML/PDF reports
+handlebars = "6"
+printpdf = "0.7"
+
+# Network diagnostics
+ping = "0.5"
+dns-lookup = "2"
+
+# Binary dependencies
+[dependencies]
+eframe = { workspace = true }
+egui = { workspace = true }
+sm-ui = { path = "crates/ui" }
+tracing-subscriber = { workspace = true }
+
+[dev-dependencies]
+sm-core = { path = "crates/core" }
+sm-config = { path = "crates/config" }
+sm-net = { path = "crates/net" }
+sm-monitor = { path = "crates/monitor" }
+sm-automation = { path = "crates/automation" }
+sm-storage = { path = "crates/storage" }
+sm-security = { path = "crates/security" }
+sm-docker = { path = "crates/docker" }
+sm-minecraft = { path = "crates/minecraft" }
+sm-reports = { path = "crates/reports" }
+chrono = { workspace = true }
+tempfile = "3"

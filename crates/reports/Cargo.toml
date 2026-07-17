@@ -1,0 +1,13 @@
+[package]
+name = "sm-reports"
+version = "0.1.0"
+edition = { workspace = true }
+license = { workspace = true }
+description = "Server Manager — HTML, JSON, PDF report generation"
+
+[dependencies]
+sm-core = { path = "../core" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+handlebars = { workspace = true }
